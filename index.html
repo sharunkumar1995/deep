@@ -2,27 +2,32 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta property="og:image" content="https://img.youtube.com/vi/12okhIhtYEk/maxresdefault.jpg" />
-        <meta property="og:title"     content="ജെസിബിക്ക് എന്തുകൊണ്ടാണ് മഞ്ഞ നിറം?" />
-<meta property="og:description"   content=" " />
+        <title></title>
     </head>
-  
+    <body>
         <script type="text/javascript">
-        
             window.onload = function() {
-                var d = "https://www.youtube.com/watch?v=12okhIhtYEk",
-		app = "vnd.youtube://12okhIhtYEk";
+
+                var desktopFallback = "https://www.youtube.com/watch?v=3QPn6vaKY1o",
+                mobileFallback = "https://www.youtube.com/watch?v=3QPn6vaKY1o",
+                app = "vnd.youtube://3QPn6vaKY1o";
 
                 if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
-                    window.location = app; 
-                    }
-                   else {
-                    window.location = d;
-                } 
-                
-                
-           };
+                    window.location = app;
+                    window.setTimeout(function() {
+                        window.location = mobileFallback;
+                    }, 25);
+                } else {
+                    window.location = desktopFallback;
+                }
 
+                function killPopup() {
+                    window.removeEventListener('pagehide', killPopup);
+                }
+
+                window.addEventListener('pagehide', killPopup);
+
+            };
         </script>
-  
+    </body>
 </html>
